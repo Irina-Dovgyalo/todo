@@ -1,10 +1,16 @@
 .todo-app {
     margin: 2rem auto 0 auto;
-    max-width: 500px;
+    max-width: 1000px;
+    padding: .25rem;
   }
 
 .search-filter-panel {
   display: flex;
   justify-content: space-between;
   padding: .25rem .75rem;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: nowrap;
 }
