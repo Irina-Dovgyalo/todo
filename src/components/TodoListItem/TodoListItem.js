@@ -4,7 +4,7 @@ import './TodoListItem.css';
 export default class TodoListItem extends Component {
     constructor(){
         super();
-        this.state ={
+        this.state = {
             done: false,
             important: false
         };
@@ -27,7 +27,7 @@ export default class TodoListItem extends Component {
     }
 
     render() {
-        const { label } = this.props;
+        const { label, onDeleted } = this.props;
         const { done, important } = this.state;
 
         let classNames = 'todo-list-item';
@@ -44,7 +44,7 @@ export default class TodoListItem extends Component {
                 <span className='todo-list-item-label' onClick={this.onLabelClick}>{label}</span> 
                 <div className='buttons'>
                     <button type='button' className='btn btn-outline-success btn-sm' onClick={this.onMarkImportant}><i className="fas fa-exclamation"></i></button>
-                    <button type='button' className='btn btn-outline-danger btn-sm'><i className="far fa-trash-alt"></i></button>
+                    <button type='button' className='btn btn-outline-danger btn-sm' onClick={onDeleted}><i className="far fa-trash-alt"></i></button>
                 </div>            
             </span>
         )

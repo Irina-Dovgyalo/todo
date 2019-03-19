@@ -1,5 +1,6 @@
 .app-header {
     align-items: flex-end;
+    padding: 0 0.75rem;
   }
   
   .app-header h1 {

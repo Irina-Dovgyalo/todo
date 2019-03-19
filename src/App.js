@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TodoList from './components/TodoList/TodoList';
 import AppHeader from './components/AppHeader/AppHeader';
 import SearchPanel from './components/SearchPanel/SearchPanel';
@@ -6,23 +6,42 @@ import ItemStatusFilter from './components/ItemStatusFilter/ItemStatusFilter';
 import './App.css';
 
 
-const App = () => {
-  const todoData = [
-    {label: 'Drink coffee', important: false, id: 1},
-    {label: 'Make React App', important: true, id: 2},
-    {label: 'Watch movie', important: false, id: 3}
-  ];
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      todoData: [
+        {label: 'Drink coffee', important: false, id: 1},
+        {label: 'Make React App', important: true, id: 2},
+        {label: 'Watch movie', important: false, id: 3}
+      ]
+    };
+  }
 
-  return (
-    <div className='todo-app'>
-      <AppHeader />
-      <div className='search-filter-panel'>
-        <SearchPanel />
-        <ItemStatusFilter />
+  deleteItem = (id) => {
+    this.setState(({todoData}) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const newArray = [
+        ...todoData.slice(0, idx),
+        ...todoData.slice(idx + 1)
+      ];
+      return {
+        todoData: newArray
+      }
+    })
+  }
+  
+  render(){
+    return (
+      <div className='todo-app'>
+        <AppHeader />
+        <div className='search-filter-panel'>
+          <SearchPanel />
+          <ItemStatusFilter />
+        </div>
+        <TodoList todos={this.state.todoData} onDeleted={this.deleteItem} />
       </div>
-      <TodoList todos={todoData}/>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
