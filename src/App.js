@@ -7,16 +7,13 @@ import './App.css';
 
 
 export default class App extends Component {
-  constructor(){
-    super();
-    this.state = {
+    state = {
       todoData: [
         {label: 'Drink coffee', important: false, id: 1},
         {label: 'Make React App', important: true, id: 2},
         {label: 'Watch movie', important: false, id: 3}
       ]
     };
-  }
 
   deleteItem = (id) => {
     this.setState(({todoData}) => {

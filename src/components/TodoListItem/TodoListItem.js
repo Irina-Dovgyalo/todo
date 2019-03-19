@@ -41,7 +41,10 @@ export default class TodoListItem extends Component {
 
         return(
             <span className={classNames}>
-                <span className='todo-list-item-label' onClick={this.onLabelClick}>{label}</span> 
+                <div>
+                    <input className='checkbox' onClick={this.onLabelClick} type="checkbox" />
+                    <span className='todo-list-item-label'>{label}</span>
+                </div>                 
                 <div className='buttons'>
                     <button type='button' className='btn btn-outline-success btn-sm' onClick={this.onMarkImportant}><i className="fas fa-exclamation"></i></button>
                     <button type='button' className='btn btn-outline-danger btn-sm' onClick={onDeleted}><i className="far fa-trash-alt"></i></button>
