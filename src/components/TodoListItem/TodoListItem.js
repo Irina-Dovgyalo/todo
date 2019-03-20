@@ -17,11 +17,8 @@ export default class TodoListItem extends Component {
 
         return(
             <span className={classNames}>
-                <div>
-                    <input className='checkbox' onClick={onToggleDone} type="checkbox" />
-                    <span className='todo-list-item-label'>{value}</span>
-                </div>                 
-                <div className='buttons'>
+                <span className='todo-list-item-label'  onClick={onToggleDone}>{value}</span>
+                <div className='buttons' >
                     <button type='button' className='btn btn-outline-success btn-sm' onClick={onToggleImportant} ><i className="fas fa-exclamation"></i></button>
                     <button type='button' className='btn btn-outline-danger btn-sm' onClick={onDeleted}><i className="far fa-trash-alt"></i></button>
                 </div>            

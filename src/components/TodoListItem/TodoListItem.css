@@ -8,6 +8,7 @@
     margin-left: .5rem;
     line-height: 35px;
     user-select: none;
+    cursor: pointer;
 }
 
 .todo-list-item.done .todo-list-item-label {
@@ -23,8 +24,4 @@
     width: 31px;
     height: 31px;
     margin-right: 5px;
-}
-
-.checkbox {
-    cursor: pointer;
 }

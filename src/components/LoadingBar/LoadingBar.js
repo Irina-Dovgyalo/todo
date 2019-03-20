@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import './LoadingBar.css';
 
 const Loader = styled.div`
     width: 96%;
@@ -11,7 +10,7 @@ const Loader = styled.div`
 `;
 
 const Loading = styled.div`
-    width: ${({ allTodo, doneTodo }) => doneTodo/allTodo * 100}%;
+    width: ${({ all, done }) => done/all * 100}%;
     height: 1rem;
     background-color: #17a2b8;
 `;
