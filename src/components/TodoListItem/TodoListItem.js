@@ -4,7 +4,7 @@ import './TodoListItem.css';
 export default class TodoListItem extends Component {
 
     render() {
-        const { label, onDeleted, onToggleImportant, onToggleDone, done, important } = this.props;
+        const { value, onDeleted, onToggleImportant, onToggleDone, done, important } = this.props;
         
         let classNames = 'todo-list-item';
         if (done) {
@@ -19,7 +19,7 @@ export default class TodoListItem extends Component {
             <span className={classNames}>
                 <div>
                     <input className='checkbox' onClick={onToggleDone} type="checkbox" />
-                    <span className='todo-list-item-label'>{label}</span>
+                    <span className='todo-list-item-label'>{value}</span>
                 </div>                 
                 <div className='buttons'>
                     <button type='button' className='btn btn-outline-success btn-sm' onClick={onToggleImportant} ><i className="fas fa-exclamation"></i></button>
