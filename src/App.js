@@ -5,16 +5,13 @@ import SearchPanel from './components/SearchPanel/SearchPanel';
 import ItemStatusFilter from './components/ItemStatusFilter/ItemStatusFilter';
 import AddForm from './components/AddForm/AddForm';
 import shortId from 'shortid';
+import LoadingBar from './components/LoadingBar/LoadingBar';
 import './App.css';
 
 
 export default class App extends Component {
     state = {
-      todoData: [
-        this.createTodoItem('Drink coffee'),
-        this.createTodoItem('Make React App'),
-        this.createTodoItem('Watch movie')
-      ],
+      todoData: [],
       term: '',
       filter: 'all' //all, active, done
     };
@@ -117,11 +114,11 @@ export default class App extends Component {
 
     const visibleTodoItems = this.filter(this.search(todoData, term), filter);
     const doneCount = todoData.filter((el) => el.done).length;
-    const todoCount = todoData.length - doneCount;
-
+   
     return (
       <div className='todo-app'>
-        <AppHeader toDo={todoCount} done={doneCount} />
+        <LoadingBar all={todoData.length} done={doneCount} />
+        <AppHeader />
         <div className='search-filter-panel'>          
           <SearchPanel onSearchChange={this.onSearchChange} />          
           <ItemStatusFilter filter={filter} onFilterChange={this.onFilterChange} />
