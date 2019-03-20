@@ -3,3 +3,7 @@
     padding: .25rem .75rem;
 }
 
+.add-form input{
+    margin-right: 0.25rem;
+    max-width: 20rem;
+}

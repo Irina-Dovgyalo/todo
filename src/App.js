@@ -14,7 +14,8 @@ export default class App extends Component {
         this.createTodoItem('Drink coffee'),
         this.createTodoItem('Make React App'),
         this.createTodoItem('Watch movie')
-      ]
+      ],
+      term: ''
     };
 
   createTodoItem(label) {
@@ -78,9 +79,19 @@ export default class App extends Component {
       };
     })
   }
+
+  search(items, term) {
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1;
+    })
+  }
   
   render(){
-    const { todoData } = this.state;
+    const { todoData, term } = this.state;
+    const visibleItems = this.search(todoData, term);
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
 
