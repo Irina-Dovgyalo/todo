@@ -13,7 +13,7 @@ export default class App extends Component {
     state = {
       todoData: [],
       term: '',
-      filter: 'all' //all, active, done
+      filter: 'all' //all, active, done,
     };
 
   createTodoItem(value) {
@@ -127,7 +127,7 @@ export default class App extends Component {
           onDeleted={this.deleteItem} 
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
-        />
+         />
         <AddForm onAdded={this.addItem}/>
       </div>
     );
