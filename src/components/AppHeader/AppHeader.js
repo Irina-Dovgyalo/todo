@@ -1,12 +1,25 @@
 import React from 'react';
-import './AppHeader.css';
+import styled from 'styled-components';
+
+const Header = styled.div`
+  display: d-flex;
+  align-items: flex-end;
+  padding: 0 0.75rem;
+`;
+
+const HeaderH1 = styled.div`
+  flex-grow: 1;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+`;
 
 
-const AppHeader = ({toDo, done}) => {
+const AppHeader = () => {
     return (
-      <div className='app-header d-flex'>
-        <h1>My Todo List</h1>
-      </div>
+      <Header>
+        <HeaderH1>My Todo List</HeaderH1>
+      </Header>
     ) 
   }
 

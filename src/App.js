@@ -12,9 +12,10 @@ import './App.css';
 export default class App extends Component {
     state = {
       todoData: [],
-      term: '',
+      term: '', //search panel
+      value: '', //input value
       filter: 'all', //all, active, done,
-      editItem: false
+      editItem: false  
     };
 
   createTodoItem(taskName) {
@@ -26,11 +27,38 @@ export default class App extends Component {
     }
   }
 
+  handleChange = (e) => {
+    this.setState({
+        value: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.addItem(this.state.value);
+    this.setState({
+        value: ''
+    })
+}
+
   deleteItem = (id) => {
     const newArray = this.state.todoData.filter(todo => todo.id !== id);
     this.setState({
       todoData: newArray
     })
+  }
+
+  handleEdit = (id) => {
+    const newArray = this.state.todoData.filter(todo => todo.id !== id);
+
+    const selectedItem = this.state.todoData.find(todo => todo.id === id);
+
+    this.setState({
+      todoData: newArray,
+      value: selectedItem.taskName,
+      editItem: true,
+      id: id
+    });
   }
 
   addItem = (text) => {    
@@ -77,16 +105,16 @@ export default class App extends Component {
     this.setState({ term });
   }
 
-  search(items, term) {
+  search(todoData, term) {
     if (term.length === 0) {
-      return items;
+      return todoData;
     }
-    return items.filter((item) => {
+    return todoData.filter((item) => {
       return item.taskName.toLowerCase().indexOf(term.toLowerCase()) > -1;
     });
   }
 
-  onFilterChange = (filter) => {
+    onFilterChange = (filter) => {
     this.setState({ filter });
   }
 
@@ -105,7 +133,7 @@ export default class App extends Component {
   }
   
   render(){
-    const { todoData, term, filter } = this.state;
+    const { todoData, term, filter, editItem, value } = this.state;
 
     const visibleTodoItems = this.filter(this.search(todoData, term), filter);
     const doneCount = todoData.filter((el) => el.done).length;
@@ -119,11 +147,17 @@ export default class App extends Component {
           <ItemStatusFilter filter={filter} onFilterChange={this.onFilterChange} />
         </div>
         <TodoList todos={visibleTodoItems} 
-          onDeleted={this.deleteItem} 
+          deleteItem={this.deleteItem} 
+          handleEdit={this.handleEdit}
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
          />
-        <AddForm onAdded={this.addItem}/>
+        <AddForm          
+          value={value} 
+          editItem={editItem} 
+          handleEdit={this.handleEdit}
+          handleChange={this.handleChange} 
+          handleSubmit={this.handleSubmit} />
       </div>
     );
   }

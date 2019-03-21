@@ -3,34 +3,19 @@ import './AddForm.css';
 
 export default class AddForm extends Component {
 
-    state = {
-        value: ''
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            value: e.target.value
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.onAdded(this.state.value);
-        this.setState({
-            value: ''
-        })
-    }
-
     render() {
+        const { value, handleChange, handleSubmit } = this.props;
         return(
-            <form className='add-form d-flex' onSubmit={this.handleSubmit}>
+            <form className='add-form d-flex' onSubmit={handleSubmit}>
                 <input type='text' 
                     className='form-control' 
-                    value={this.state.value}
-                    onChange={this.handleChange} 
+                    value={value}
+                    onChange={handleChange} 
                     placeholder='What needs to be done'
                 />
-                <button className='btn btn-outline-secondary'>Add</button>
+                <button className='btn btn-outline-secondary'>
+                    {/* { editItem ? 'Edit' : 'Add'}  */} Add
+                </button>
             </form>
         )
     }
