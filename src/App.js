@@ -13,12 +13,13 @@ export default class App extends Component {
     state = {
       todoData: [],
       term: '',
-      filter: 'all' //all, active, done,
+      filter: 'all', //all, active, done,
+      editItem: false
     };
 
-  createTodoItem(value) {
+  createTodoItem(taskName) {
     return {
-      value,
+      taskName,
       important: false,
       done: false,
       id: shortId.generate()
@@ -26,15 +27,9 @@ export default class App extends Component {
   }
 
   deleteItem = (id) => {
-    this.setState(({todoData}) => {
-      const idx = todoData.findIndex((el) => el.id === id);
-      const newArray = [
-        ...todoData.slice(0, idx),
-        ...todoData.slice(idx + 1)
-      ];
-      return {
-        todoData: newArray
-      }
+    const newArray = this.state.todoData.filter(todo => todo.id !== id);
+    this.setState({
+      todoData: newArray
     })
   }
 
@@ -52,13 +47,13 @@ export default class App extends Component {
   }
 
   toggleProperty(arr, id, propName) {
-    const idx = arr.findIndex((el) => el.id === id);
-      const oldTodo = arr[idx];      
+    const index = arr.findIndex((el) => el.id === id);
+      const oldTodo = arr[index];      
       const newTodo = {...oldTodo, [propName]: !oldTodo[propName]};
       return [
-        ...arr.slice(0, idx),
+        ...arr.slice(0, index),
         newTodo,
-        ...arr.slice(idx + 1)
+        ...arr.slice(index + 1)
       ];
   }
 
@@ -87,7 +82,7 @@ export default class App extends Component {
       return items;
     }
     return items.filter((item) => {
-      return item.value.toLowerCase().indexOf(term.toLowerCase()) > -1;
+      return item.taskName.toLowerCase().indexOf(term.toLowerCase()) > -1;
     });
   }
 

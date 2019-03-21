@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SearchPanel.css';
 
 export default class SearchPanel extends Component {
+  
   state = {
     term: ''
   };
