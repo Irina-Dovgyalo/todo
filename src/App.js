@@ -40,17 +40,19 @@ export default class App extends Component {
   }
 
   handleEdit = (id) => {
-    const newArray = this.state.todoData.filter(todo => todo.id !== id);
+    this.setState(({todoData}) => {
+    const newArray = todoData.filter(todo => todo.id !== id);
 
-    const selectedItem = this.state.todoData.find(todo => todo.id === id);
+    const selectedItem = todoData.find(todo => todo.id === id);
 
-    this.setState({
+    return {
       todoData: newArray,
       value: selectedItem.taskName,
       editItem: true,
       id: id
-    });
-  }
+    }
+  });
+}
 
   addItem = (taskName) => {    
       const newTodo = {
