@@ -18,15 +18,6 @@ export default class App extends Component {
       editItem: false  
     };
 
-  createTodoItem(taskName) {
-    return {
-      taskName,
-      important: false,
-      done: false,
-      id: shortId.generate()
-    }
-  }
-
   handleChange = (e) => {
     this.setState({
         value: e.target.value
@@ -61,8 +52,13 @@ export default class App extends Component {
     });
   }
 
-  addItem = (text) => {    
-      const newTodo = this.createTodoItem(text);
+  addItem = (taskName) => {    
+      const newTodo = {
+      taskName,
+      important: false,
+      done: false,
+      id: shortId.generate()
+    };
       this.setState(({todoData}) => {
       const newArray = [
         ...todoData,
